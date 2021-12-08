@@ -6,6 +6,7 @@ import { ILogger } from './logger/logger.interface';
 import { TYPES } from './types';
 import 'reflect-metadata';
 import { inject, injectable } from 'inversify';
+import { json } from 'body-parser';
 
 @injectable()
 export class App {
@@ -30,7 +31,12 @@ export class App {
 		this.app.use(this.exeptionFilter.catch.bind(this.exeptionFilter));
 	}
 
+	useMiddleware(): void {
+		this.app.use(json());
+	}
+
 	public init(): void {
+		this.useMiddleware();
 		this.useRoutes();
 		this.useExeptionFilters();
 		this.server = this.app.listen(this.port);

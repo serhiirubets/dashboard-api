@@ -24,3 +24,5 @@ app.route('/user')
 app.listen(port, () => {
   console.log(`Сервер запущен на http://localhost:${port}`);
 });
+
+// clinic doctor --on-port 'autocannon -m POST localhost:8000/users/register' -- node dist/main.js
